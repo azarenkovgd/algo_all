@@ -2,6 +2,10 @@ from typing import List
 
 from common import solve
 
+# База и модуль для хеширования
+BASE = 256
+MOD = 10**9 + 7
+
 
 def get_solution(input: List[str]) -> List[str]:
     """
@@ -16,25 +20,21 @@ def get_solution(input: List[str]) -> List[str]:
     len_P = len(P)
     len_T = len(T)
 
-    # База и модуль для хеширования
-    base = 256
-    mod = 10**9 + 7
-
     # Предварительный расчет степени базы
     power = 1
     for _ in range(len_P - 1):
-        power = (power * base) % mod
+        power = (power * BASE) % MOD
 
     # Вычисление хеша паттерна
     hash_P = 0
     for char in P:
-        hash_P = (hash_P * base + ord(char)) % mod
+        hash_P = (hash_P * BASE + ord(char)) % MOD
 
     # Вычисление начального хеша окна текста
     hash_T = 0
 
     for char in T[:len_P]:
-        hash_T = (hash_T * base + ord(char)) % mod
+        hash_T = (hash_T * BASE + ord(char)) % MOD
 
     result_positions: List[int] = []
 
@@ -47,9 +47,9 @@ def get_solution(input: List[str]) -> List[str]:
 
         # Вычисление хеша следующего окна текста
         if i < len_T - len_P:
-            hash_T = (hash_T - ord(T[i]) * power) % mod
-            hash_T = (hash_T * base + ord(T[i + len_P])) % mod
-            hash_T = (hash_T + mod) % mod  # Обеспечить положительное значение
+            hash_T = (hash_T - ord(T[i]) * power) % MOD
+            hash_T = (hash_T * BASE + ord(T[i + len_P])) % MOD
+            hash_T = (hash_T + MOD) % MOD  # Обеспечить положительное значение
 
     # Формирование выходных данных
     count = len(result_positions)

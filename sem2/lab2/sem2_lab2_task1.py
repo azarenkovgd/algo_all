@@ -17,9 +17,11 @@ def build_tree(n: int, nodes_info: List[List[int]]) -> Dict[int, TreeNode]:
     Строит дерево из предоставленной информации о узлах.
     """
     tree = {}
+
     for i in range(n):
         key, left, right = nodes_info[i]
         tree[i] = TreeNode(key, left, right)
+
     return tree
 
 

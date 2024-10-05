@@ -2,11 +2,6 @@ from typing import List, Dict
 
 from common import solve
 
-""" 
-Функция get_solution принимает список строк, представляющих входные данные, 
-и возвращает список строк с результатом – количеством компонент сильной связности.
-"""
-
 
 # Функция для выполнения DFS и заполнения порядка завершения
 def dfs_first(u: int, visited: List[bool], stack: List[int], adj: Dict[int, List[int]]) -> None:
@@ -29,6 +24,11 @@ def dfs_second(u: int, visited: List[bool], adj_transpose: Dict[int, List[int]])
 
 
 def get_solution(input_lines: List[str]) -> List[str]:
+    """
+    Функция get_solution принимает список строк, представляющих входные данные,
+    и возвращает список строк с результатом – количеством компонент сильной связности.
+    """
+
     # Разбор первой строки для получения количества вершин и ребер
     n, m = map(int, input_lines[0].split())
 

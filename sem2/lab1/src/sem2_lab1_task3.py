@@ -31,4 +31,5 @@ def get_solution(input_lines: List[str]) -> List[str]:
     return [str(total)]
 
 
-solve(get_solution)
+if __name__ == "__main__":
+    solve(get_solution)

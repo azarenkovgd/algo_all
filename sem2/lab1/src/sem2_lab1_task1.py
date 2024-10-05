@@ -49,4 +49,5 @@ def get_solution(input_data: List[str]) -> List[str]:
     return [result]
 
 
-solve(get_solution)
+if __name__ == "__main__":
+    solve(get_solution)

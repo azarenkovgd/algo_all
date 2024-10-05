@@ -10,8 +10,8 @@ class TreeNode:
 
     def __init__(self, key: int):
         self.key: int = key
-        self.left: Optional["TreeNode"] = None
-        self.right: Optional["TreeNode"] = None
+        self.left: Optional[TreeNode] = None
+        self.right: Optional[TreeNode] = None
 
 
 class BinarySearchTree:
@@ -24,29 +24,37 @@ class BinarySearchTree:
 
     def insert(self, key: int) -> None:
         """Добавляет ключ в дерево, если его еще нет."""
+
         if self.root is None:
             self.root = TreeNode(key)
             return
 
         current = self.root
+
         while True:
             if key < current.key:
                 if current.left is None:
                     current.left = TreeNode(key)
                     return
+
                 current = current.left
+
             elif key > current.key:
                 if current.right is None:
                     current.right = TreeNode(key)
                     return
+
                 current = current.right
+
             else:
                 # Ключ уже существует, ничего не делаем
                 return
 
     def exists(self, key: int) -> bool:
         """Проверяет существование ключа в дереве."""
+
         current = self.root
+
         while current:
             if key < current.key:
                 current = current.left
@@ -54,16 +62,20 @@ class BinarySearchTree:
                 current = current.right
             else:
                 return True
+
         return False
 
     def find_min(self, node: TreeNode) -> TreeNode:
         """Находит минимальный узел в поддереве."""
+
         while node.left:
             node = node.left
+
         return node
 
     def delete(self, key: int) -> None:
         """Удаляет ключ из дерева, если он существует."""
+
         self.root = self._delete_rec(self.root, key)
 
     def _delete_rec(self, node: Optional[TreeNode], key: int) -> Optional[TreeNode]:
@@ -90,26 +102,32 @@ class BinarySearchTree:
 
     def next(self, key: int) -> Optional[int]:
         """Находит минимальный элемент, строго больший заданного ключа."""
+
         current = self.root
         successor = None
+
         while current:
             if current.key > key:
                 successor = current.key
                 current = current.left
             else:
                 current = current.right
+
         return successor
 
     def prev(self, key: int) -> Optional[int]:
         """Находит максимальный элемент, строго меньший заданного ключа."""
+
         current = self.root
         predecessor = None
+
         while current:
             if current.key < key:
                 predecessor = current.key
                 current = current.right
             else:
                 current = current.left
+
         return predecessor
 
 
@@ -117,6 +135,7 @@ def get_solution(input_lines: List[str]) -> List[str]:
     """
     Обрабатывает операции над двоичным деревом поиска и возвращает результаты операций exists, next, prev.
     """
+
     bst = BinarySearchTree()
     output: List[str] = []
 
